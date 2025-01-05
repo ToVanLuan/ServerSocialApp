@@ -1,14 +1,23 @@
 package spring.api.social_app.api;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import spring.api.social_app.dto.UserDTO;
-import spring.api.social_app.service.impl.EmailService;
-import spring.api.social_app.service.IUserService;
 
-import java.util.List;
+import spring.api.social_app.dto.UserDTO;
+import spring.api.social_app.service.IUserService;
+import spring.api.social_app.service.impl.EmailService;
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -41,10 +50,12 @@ public class AuthApi {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<Map<String, String>> login(@RequestParam String username, @RequestParam String password) {
         // Đăng nhập và nhận lại token
         String token = userService.loginUser(username, password);
-        return ResponseEntity.ok(token);
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/logout")

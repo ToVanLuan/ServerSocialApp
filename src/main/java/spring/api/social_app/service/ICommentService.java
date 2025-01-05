@@ -1,7 +1,10 @@
 package spring.api.social_app.service;
 
-import spring.api.social_app.dto.CommentDTO;
+
 import java.util.List;
+
+import spring.api.social_app.dto.CommentDTO;
+
 
 public interface ICommentService {
     CommentDTO addComment(Long postId, Long userId, String content);

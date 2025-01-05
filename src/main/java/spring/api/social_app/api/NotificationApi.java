@@ -1,11 +1,18 @@
 package spring.api.social_app.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import spring.api.social_app.dto.NotificationDTO;
 import spring.api.social_app.service.INotificationService;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/notifications")

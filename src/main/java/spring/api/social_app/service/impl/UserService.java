@@ -1,14 +1,27 @@
 package spring.api.social_app.service.impl;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
-import com.google.cloud.storage.BlobInfo;
-import com.google.firebase.cloud.StorageClient;
-import jakarta.transaction.Transactional;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+
+import jakarta.transaction.Transactional;
 import spring.api.social_app.dto.UserDTO;
 import spring.api.social_app.entity.PasswordResetToken;
 import spring.api.social_app.entity.Post;
@@ -17,14 +30,6 @@ import spring.api.social_app.repository.TokenRepository;
 import spring.api.social_app.repository.UserRepository;
 import spring.api.social_app.service.IUserService;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService {
@@ -76,7 +81,9 @@ public class UserService implements IUserService {
         try {
             Map uploadResult = cloudinary.uploader().upload(imgFile.getBytes(), ObjectUtils.asMap(
                     "folder", "avatars" // Tạo thư mục riêng cho avatar
-            ));
+
+            ));	
+
             return uploadResult.get("secure_url").toString();
         } catch (IOException e) {
             throw new RuntimeException("Failed to upload avatar to Cloudinary", e);
@@ -88,8 +95,11 @@ public class UserService implements IUserService {
         // Kiểm tra nếu người dùng tồn tại
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
+
+        	Long userId = user.get().getId();
             // Trả về token giả lập (thực tế sử dụng JWT)
-            return "dummy-token-for-" + username;
+            return "dummy-token-for-" + userId;
+
         }
         throw new RuntimeException("Invalid username or password");
     }

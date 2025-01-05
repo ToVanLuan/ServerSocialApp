@@ -1,8 +1,10 @@
 package spring.api.social_app.service;
 
-import spring.api.social_app.dto.NotificationDTO;
 
 import java.util.List;
+
+import spring.api.social_app.dto.NotificationDTO;
+
 
 public interface INotificationService {
     void sendFollowNotification(Long followerId, Long followedId);  // Thông báo khi có người theo dõi
