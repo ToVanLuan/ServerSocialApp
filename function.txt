@@ -1,0 +1,15 @@
+Các chức năng của app bao gồm:
+- Xem profile, Chỉnh sửa profile
+- follow, unfollow
+- xem danh sách follower,following
+- Xem bài viết của những những người đã follow
+- Đăng bài (Đính kèm ảnh)
+- Like, bỏ like
+- Comment
+- Reply comment
+- Like comment, bỏ like comment
+- Tìm kiếm người dùng
+- Hiển thị thông báo
+- Đăng kí
+- Đăng nhập
+- Đổi mật khẩu, quên mật khẩu(SMTP)
