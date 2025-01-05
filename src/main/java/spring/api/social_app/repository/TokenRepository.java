@@ -1,9 +1,10 @@
 package spring.api.social_app.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import spring.api.social_app.entity.PasswordResetToken;
-
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import spring.api.social_app.entity.PasswordResetToken;
 
 public interface TokenRepository extends JpaRepository<PasswordResetToken, Long> {
     Optional<PasswordResetToken> findByToken(String token);

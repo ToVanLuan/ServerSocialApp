@@ -1,10 +1,12 @@
 package spring.api.social_app.service;
 
-import org.springframework.web.multipart.MultipartFile;
-import spring.api.social_app.dto.UserDTO;
 
 import java.util.List;
 import java.util.Set;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import spring.api.social_app.dto.UserDTO;
 
 public interface IUserService {
     UserDTO registerUser(UserDTO userDTO, String password, MultipartFile imgFile) throws Exception;

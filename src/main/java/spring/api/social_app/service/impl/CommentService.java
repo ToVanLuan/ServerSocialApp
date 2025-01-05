@@ -1,22 +1,25 @@
 package spring.api.social_app.service.impl;
 
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import spring.api.social_app.dto.CommentDTO;
-import spring.api.social_app.dto.PostDTO;
-import spring.api.social_app.entity.Comment;
-import spring.api.social_app.entity.User;
-import spring.api.social_app.entity.Post;
-import spring.api.social_app.repository.CommentRepository;
-import spring.api.social_app.repository.UserRepository;
-import spring.api.social_app.repository.PostRepository;
-import spring.api.social_app.service.ICommentService;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import spring.api.social_app.dto.CommentDTO;
+import spring.api.social_app.dto.PostDTO;
+import spring.api.social_app.entity.Comment;
+import spring.api.social_app.entity.Post;
+import spring.api.social_app.entity.User;
+import spring.api.social_app.repository.CommentRepository;
+import spring.api.social_app.repository.PostRepository;
+import spring.api.social_app.repository.UserRepository;
+import spring.api.social_app.service.ICommentService;
 
 @Service
 public class CommentService implements ICommentService {

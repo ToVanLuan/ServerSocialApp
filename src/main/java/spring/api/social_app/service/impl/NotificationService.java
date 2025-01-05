@@ -1,6 +1,13 @@
 package spring.api.social_app.service.impl;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 import spring.api.social_app.dto.NotificationDTO;
 import spring.api.social_app.entity.Notification;
 import spring.api.social_app.entity.Post;
@@ -9,9 +16,6 @@ import spring.api.social_app.repository.NotificationRepository;
 import spring.api.social_app.repository.UserRepository;
 import spring.api.social_app.service.INotificationService;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class NotificationService implements INotificationService {

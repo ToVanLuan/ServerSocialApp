@@ -1,10 +1,12 @@
 package spring.api.social_app.service;
 
-import org.springframework.web.multipart.MultipartFile;
-import spring.api.social_app.dto.PostDTO;
-import spring.api.social_app.entity.Post;
 
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import spring.api.social_app.dto.PostDTO;
+
 
 public interface IPostService {
     PostDTO createPost(PostDTO postDTO,  List<MultipartFile> imageFiles);
