@@ -95,7 +95,6 @@ public class UserService implements IUserService {
         // Kiểm tra nếu người dùng tồn tại
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
-
         	Long userId = user.get().getId();
             // Trả về token giả lập (thực tế sử dụng JWT)
             return "dummy-token-for-" + userId;
@@ -110,31 +109,31 @@ public class UserService implements IUserService {
         System.out.println("Token invalidated: " + token);
     }
 
-    @Override
-    public UserDTO getUserProfile(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            Set<String> posts = new HashSet<>();
-            Set<String> followers = new HashSet<>();
-            Set<String> following = new HashSet<>();
-
-            // Chuyển đổi thông tin về bài viết, người theo dõi và người theo dõi
-            for (Post post : user.getPosts()) {
-                posts.add(post.getId().toString());
-            }
-            for (User follower : user.getFollowers()) {
-                followers.add(follower.getUsername());
-            }
-            for (User followee : user.getFollowing()) {
-                following.add(followee.getUsername());
-            }
-
-            return new UserDTO(user.getId(), user.getUsername(), user.getFullName(), user.getBio(), user.getAvatar(), posts, followers, following,user.getEmail());
-        }
-        throw new RuntimeException("User not found");
-    }
-
+	    @Override
+	    public UserDTO getUserProfile(Long userId) {
+	        Optional<User> userOptional = userRepository.findById(userId);
+	        if (userOptional.isPresent()) {
+	            User user = userOptional.get();
+	            Set<String> posts = new HashSet<>();
+	            Set<String> followers = new HashSet<>();
+	            Set<String> following = new HashSet<>();
+	
+	            // Chuyển đổi thông tin về bài viết, người theo dõi và người theo dõi
+	            for (Post post : user.getPosts()) {
+	                posts.add(post.getId().toString());
+	            }
+	            for (User follower : user.getFollowers()) {
+	                followers.add(follower.getUsername());
+	            }
+	            for (User followee : user.getFollowing()) {
+	                following.add(followee.getUsername());
+	            }
+	
+	            return new UserDTO(user.getId(), user.getUsername(), user.getFullName(), user.getBio(), user.getAvatar(), posts, followers, following,user.getEmail());
+	        }
+	        throw new RuntimeException("User not found");
+	    }
+	
 
     @Override
     public UserDTO updateUserProfile(Long userId, UserDTO userDTO, MultipartFile imgFile) {
